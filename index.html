@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enigma do Cellbit - Encriptador de Senhas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 Enigma do Cellbit</h1>
+            <p class="subtitle">Encriptador de Senhas Educativo</p>
+        </header>
+
+        <main>
+            <section class="input-section">
+                <h2>Passo 1: Digite sua Senha</h2>
+                <div class="input-group">
+                    <input 
+                        type="password" 
+                        id="passwordInput" 
+                        placeholder="Digite sua senha aqui..."
+                        class="password-input"
+                    >
+                    <button id="togglePasswordBtn" class="toggle-btn" title="Mostrar/Ocultar">👁️</button>
+                </div>
+                <button id="encryptBtn" class="encrypt-btn">Criptografar</button>
+            </section>
+
+            <section class="method-section" id="methodSection" style="display: none;">
+                <h2>Escolha o Método de Criptografia</h2>
+                <div class="method-buttons">
+                    <button class="method-btn" data-method="cipher">
+                        <span class="method-icon">📝</span>
+                        <span class="method-name">Cipher (Deslocamento)</span>
+                    </button>
+                    <button class="method-btn" data-method="reverse">
+                        <span class="method-icon">↔️</span>
+                        <span class="method-name">Reverso</span>
+                    </button>
+                    <button class="method-btn" data-method="base64">
+                        <span class="method-icon">🔤</span>
+                        <span class="method-name">Base64</span>
+                    </button>
+                    <button class="method-btn" data-method="xor">
+                        <span class="method-icon">⚡</span>
+                        <span class="method-name">XOR</span>
+                    </button>
+                </div>
+            </section>
+
+            <section class="shift-section" id="shiftSection" style="display: none;">
+                <h2>Passo 2: Escolha o Deslocamento</h2>
+                <div class="shift-input-group">
+                    <label for="shiftValue">Deslocamento (0-25):</label>
+                    <input 
+                        type="range" 
+                        id="shiftValue" 
+                        min="0" 
+                        max="25" 
+                        value="3"
+                        class="shift-slider"
+                    >
+                    <span id="shiftDisplay">3</span>
+                </div>
+                <p class="shift-info">Cada letra será deslocada por <strong id="shiftValueText">3</strong> posições no alfabeto</p>
+            </section>
+
+            <section class="key-section" id="keySection" style="display: none;">
+                <h2>Passo 2: Digite uma Chave</h2>
+                <input 
+                    type="text" 
+                    id="xorKey" 
+                    placeholder="Digite uma chave (ex: SEGREDO)..."
+                    class="key-input"
+                >
+            </section>
+
+            <section class="result-section" id="resultSection" style="display: none;">
+                <h2>Resultado da Criptografia</h2>
+                
+                <div class="result-card">
+                    <div class="result-item">
+                        <h3>Senha Original</h3>
+                        <div class="result-content">
+                            <p id="originalPassword" class="result-text"></p>
+                            <button class="copy-btn" data-target="originalPassword">Copiar</button>
+                        </div>
+                    </div>
+
+                    <div class="result-item">
+                        <h3>Senha Criptografada</h3>
+                        <div class="result-content">
+                            <p id="encryptedPassword" class="result-text"></p>
+                            <button class="copy-btn" data-target="encryptedPassword">Copiar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="step-by-step" id="stepByStep">
+                    <h3>📚 Passo a Passo da Criptografia</h3>
+                    <div id="stepsContainer" class="steps-container"></div>
+                </section>
+
+                <section class="decryption-section">
+                    <h3>🔓 Aprender a Descriptografar</h3>
+                    <div class="decryption-content">
+                        <div class="decryption-info">
+                            <p>Aqui está como você pode reverter o processo:</p>
+                            <div id="decryptionSteps" class="decryption-steps"></div>
+                        </div>
+                        <button id="decryptBtn" class="decrypt-btn">Descriptografar Agora</button>
+                    </div>
+                </section>
+
+                <div id="decryptionResult" style="display: none;">
+                    <div class="result-item">
+                        <h3>Resultado da Descriptografia</h3>
+                        <div class="result-content">
+                            <p id="decryptedPassword" class="result-text"></p>
+                            <button class="copy-btn" data-target="decryptedPassword">Copiar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="resetBtn" class="reset-btn">Começar Novamente</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>Enigma do Cellbit © 2024 - Educação em Criptografia</p>
+        </footer>
+    </div>
+
+    <script src="encryption.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
